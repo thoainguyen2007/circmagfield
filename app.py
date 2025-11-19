@@ -10,11 +10,11 @@ st.title("Mô hình từ trường của dòng điện tròn")
 h=1e-7
 I = st.number_input(
             f'Nhập cường độ dòng điện I',
-            min_value=0.0, max_value=10, step=0.01, key=f"I"
+            min_value=0.0, max_value=10.0, step=0.01, key=f"I"
         )
 R = st.number_input(
             f'Nhập bán kính dòng điện tròn',
-            min_value=0.0, max_value=10, step=0.01, key=f"R"
+            min_value=0.0, max_value=10.0, step=0.01, key=f"R"
         )
 N = 1000  #  số "đoạn thẳng" chia từ đường tròn
 
