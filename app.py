@@ -19,7 +19,7 @@ R = st.number_input(
             min_value=0.0, max_value=10.0, step=0.01, 
             value=1.0, key=f"R"
         )
-N = 1000  #  số "đoạn thẳng" chia từ đường tròn
+N = int(1000*R)  #  số "đoạn thẳng" chia từ đường tròn
 
 theta = np.linspace(0, 2*np.pi, N, endpoint=False)
 #chia thành N góc(tổng N góc là 2pi), endpoint=False để không lặp lại góc 2pi
@@ -58,8 +58,8 @@ for i in range(N): #i chạy từ 0 tới N-1
     r=dks-(p[i-1]+p[i])/2 #tổng trung bình
     #r=dks-p[i]   #tổng phải
     # r=dks-p[i-1]  #tỗng trái
-    B += I*np.cross(dl,r)/np.linalg.norm(r)**3
-B*=h
+    B += np.cross(dl,r)/np.linalg.norm(r)**3
+B=B*h*I
 if st.button("Tính và hiển thị ảnh"):
     s = f"{np.linalg.norm(B):.2e}"          
     coef, exp = s.split('e')   
@@ -70,15 +70,18 @@ if st.button("Tính và hiển thị ảnh"):
 
     fig = plt.figure(figsize=(10,10))
     ax = fig.add_subplot(111, projection='3d')###tạo ra bố cục các ô vẽ gồm 1 hàng, 1 cột và chọn ô số 1.
-    L = 2
-    # ax.set_xlim([-L, L])
-    # ax.set_ylim([-L, L])
+    
+    L = np.max(np.abs([R,dks[0], dks[1], dks[2]]))+1
+    ax.set_xlim([-L, L])
+    ax.set_ylim([-L, L])
     ax.set_zlim([-L, L])
     ax.set_box_aspect([1,1,2])
+
+
     ax.plot(x, y, z,c="red")  #đường nối N điểm
     k=-int(N/6)
     ax.quiver(p[k,0],p[k,1],p[k,2], p[k+1,0]-p[k,0],p[k+1,1]-p[k,1],p[k+1,2]-p[k,2],
-            length=0.05,
+            length=0.05*R,
             normalize=True,
             arrow_length_ratio=5,
             color='red', label=f"Dòng điện I = {I}A")
@@ -89,7 +92,7 @@ if st.button("Tính và hiển thị ảnh"):
 
     ###vector cảm ứng từ
     ax.quiver(dks[0], dks[1], dks[2], B[0], B[1], B[2], 
-            length=R/2, 
+            length=L/4, 
             normalize=True,
             arrow_length_ratio=0.5, label=rf'$\vec{{B}}={coef} \times 10^{{{exp}}}$')
 
