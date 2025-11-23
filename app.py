@@ -65,7 +65,7 @@ if st.button("Tính và hiển thị ảnh"):
     coef, exp = s.split('e')   
     coef = float(coef)         
     exp = int(exp)
-    st.success(rf'Độ lớn từ trường tại ({dks[0]},{dks[1]},{dks[2]}) là $\vec{{B}}={coef} \times 10^{{{exp}}}$')
+    st.success(rf'Độ lớn từ trường tại ({dks[0]},{dks[1]},{dks[2]}) là $\vec{{B}}={coef} \times 10^{{{exp}}}$ T')
 
 
     fig = plt.figure(figsize=(10,10))
@@ -84,7 +84,7 @@ if st.button("Tính và hiển thị ảnh"):
             length=0.05*R,
             normalize=True,
             arrow_length_ratio=5,
-            color='red', label=f"Dòng điện I = {I}A")
+            color='red', label=f"Dòng điện I = {I} A")
     ###3 tham số đầu là điểm đầu và 3 tham số tiếp theo là hướng vector
 
 
@@ -94,7 +94,7 @@ if st.button("Tính và hiển thị ảnh"):
     ax.quiver(dks[0], dks[1], dks[2], B[0], B[1], B[2], 
             length=L/4, 
             normalize=True,
-            arrow_length_ratio=0.5, label=rf'$\vec{{B}}={coef} \times 10^{{{exp}}}$')
+            arrow_length_ratio=0.5, label=rf'$\vec{{B}}={coef} \times 10^{{{exp}}}$ T')
 
 
     plt.legend(loc="upper left")
