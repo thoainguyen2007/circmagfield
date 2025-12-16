@@ -39,12 +39,6 @@ elif lua_chon_chuoi == 'Cùng chiều':
     ket_qua_boolean = 1
 
 
-# 3. Hiển thị kết quả
-st.write(f'Lựa chọn của bạn (dạng chuỗi): **{lua_chon_chuoi}**')
-st.write(f'Giá trị Boolean tương ứng: **{ket_qua_boolean}**')
-st.write(f'Kiểu dữ liệu: **{type(ket_qua_boolean)}**')
-chieu=st
-
 
 N = int(1000*R)  #  số "đoạn thẳng" chia từ đường tròn
 
