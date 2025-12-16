@@ -19,10 +19,39 @@ R = st.number_input(
             min_value=0.0, max_value=10.0, step=0.01, 
             value=1.0, key=f"R"
         )
+
+st.header('Chiều dòng điện')
+
+# 1. Tạo widget st.radio
+# Người dùng chọn một trong hai chuỗi 'Nút 1' hoặc 'Nút 2'
+lua_chon_chuoi = st.radio(
+    'Chọn chiều dòng điện:',
+    ('Ngược chiều', 'Cùng chiều'),
+    index=0 # Đặt 'Nút 1' làm giá trị mặc định được chọn ban đầu
+)
+
+# 2. Ánh xạ lựa chọn chuỗi sang giá trị boolean
+chieu=0
+
+if lua_chon_chuoi == 'Ngược chiều':
+    ket_qua_boolean = 0
+elif lua_chon_chuoi == 'Cùng chiều':
+    ket_qua_boolean = 1
+
+
+# 3. Hiển thị kết quả
+st.write(f'Lựa chọn của bạn (dạng chuỗi): **{lua_chon_chuoi}**')
+st.write(f'Giá trị Boolean tương ứng: **{ket_qua_boolean}**')
+st.write(f'Kiểu dữ liệu: **{type(ket_qua_boolean)}**')
+chieu=st
+
+
 N = int(1000*R)  #  số "đoạn thẳng" chia từ đường tròn
+
 
 theta = np.linspace(0, 2*np.pi, N, endpoint=False)
 #chia thành N góc(tổng N góc là 2pi), endpoint=False để không lặp lại góc 2pi
+theta=theta*(-1)**chieu
 
 x = R * np.cos(theta)
 y = R * np.sin(theta)
