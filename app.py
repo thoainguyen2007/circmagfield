@@ -21,10 +21,6 @@ R = st.number_input(
             value=1.0, key=f"R"
         )
 
-st.header('Chiều dòng điện')
-
-# 1. Tạo widget st.radio
-# Người dùng chọn một trong hai chuỗi 'Nút 1' hoặc 'Nút 2'
 lua_chon_chuoi = st.radio(
     'Chọn chiều dòng điện:',
     ('Ngược chiều kim đồng hồ', 'Cùng chiều kim đồng hồ'),
