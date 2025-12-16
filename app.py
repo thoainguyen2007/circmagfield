@@ -38,7 +38,7 @@ if lua_chon_chuoi == 'Ngược chiều kim đồng hồ':
 elif lua_chon_chuoi == 'Cùng chiều kim đồng hồ':
     chieu = 1
 
-st.write(chieu)
+
 
 N = int(1000*R)  #  số "đoạn thẳng" chia từ đường tròn
 
