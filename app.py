@@ -1,3 +1,4 @@
+#streamlit run app.py
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
@@ -26,25 +27,25 @@ st.header('Chiều dòng điện')
 # Người dùng chọn một trong hai chuỗi 'Nút 1' hoặc 'Nút 2'
 lua_chon_chuoi = st.radio(
     'Chọn chiều dòng điện:',
-    ('Ngược chiều', 'Cùng chiều'),
+    ('Ngược chiều kim đồng hồ', 'Cùng chiều kim đồng hồ'),
     index=0 # Đặt 'Nút 1' làm giá trị mặc định được chọn ban đầu
 )
 
-# 2. Ánh xạ lựa chọn chuỗi sang giá trị boolean
-chieu=0
-
-if lua_chon_chuoi == 'Ngược chiều':
-    ket_qua_boolean = 0
-elif lua_chon_chuoi == 'Cùng chiều':
-    ket_qua_boolean = 1
 
 
+if lua_chon_chuoi == 'Ngược chiều kim đồng hồ':
+    chieu = 0
+elif lua_chon_chuoi == 'Cùng chiều kim đồng hồ':
+    chieu = 1
+
+st.write(chieu)
 
 N = int(1000*R)  #  số "đoạn thẳng" chia từ đường tròn
 
 
 theta = np.linspace(0, 2*np.pi, N, endpoint=False)
 #chia thành N góc(tổng N góc là 2pi), endpoint=False để không lặp lại góc 2pi
+
 theta=theta*(-1)**chieu
 
 x = R * np.cos(theta)
@@ -115,7 +116,7 @@ if st.button("Tính và hiển thị ảnh"):
 
     ###vector cảm ứng từ
     ax.quiver(dks[0], dks[1], dks[2], B[0], B[1], B[2], 
-            length=L/4, 
+            length=R, 
             normalize=True,
             arrow_length_ratio=0.5, label=rf'$\vec{{B}}={coef} \times 10^{{{exp}}}$ T')
 
